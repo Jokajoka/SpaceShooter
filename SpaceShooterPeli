@@ -1,0 +1,18 @@
+###### Aihe:
+
+Projektin ideana on luoda Space Invaders classikkopeliä jäljittelevä ohjelma.
+Pelin ei toki ole tarkoitus olla suora kopio, vaan lähinnä mekaniikoiltaan alkuperäistä muistuttava.
+Lähden toteuttamaan projektia hyvin simppelisti ja lisään siihen elementtejä taitotasoni sekä käytössä
+olevan ajan mukaan.
+Pääideana pelissä on siis ohjata avaruudessa kiitävää alusta ja raivata eteen osuneita vastustajia ampumalla.
+Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään tason loppuun asti hengissä.
+
+###### Käyttäjät:
+
+Kuka tahansa.
+
+###### Toiminnot:
+
+* Aluksen ohjaaminen
+* Ampuminen
+* Keräily
