@@ -11,10 +11,11 @@ Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään t
 
 ###### Käyttäjät:
 
-* Kuka tahansa.
+* Kuka tahansa pelaamisesta kiinnostunut.
 
 ###### Toiminnot:
 
 * Aluksen ohjaaminen
 * Ampuminen
 * Keräily
+* Boostien hyödyntäminen
