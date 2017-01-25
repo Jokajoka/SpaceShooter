@@ -4,21 +4,21 @@
  * and open the template in the editor.
  */
 
+import fi.Jokajoka.spaceshooter.logiikka.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import fi.Jokajoka.spaceshooter.logiikka.Unit;
 
 /**
  *
  * @author kahonjon
  */
-public class UnitTest {
+public class PlayerTest {
     
-    public UnitTest() {
+    public PlayerTest() {
     }
     
     @BeforeClass
@@ -31,33 +31,30 @@ public class UnitTest {
     
     @Before
     public void setUp() {
-        
     }
     
     @After
     public void tearDown() {
     }
-
+   
     @Test
-    public void damage(){
-        Unit player = new Unit(100, 200, 350);
-        player.reduce(33);
-        if(player.getHealth() == 67){
-            System.out.println("True");;
+    public void damage() {
+        Player player = new Player(100, 200, 350);
+        player.reduce(15);
+        if (player.getHealth() == 85){
+            System.out.println("True");
         } else {
-            System.out.println("False");;
+            System.out.println("False");
         }
-        
     }
     
     @Test
-    public void heal(){
-        Unit player = new Unit(50, 200, 350);
-        player.heal(15);
-        if(player.getHealth() == 65){
-            System.out.println("True");;
+    public void playability() {
+        Player player = new Player(100, 200, 350);
+        if (player.getPlayable() == false){
+            System.out.println("false");
         } else {
-            System.out.println("False");;
+            System.out.println("true");
         }
     }
 }
