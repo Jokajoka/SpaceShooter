@@ -50,4 +50,22 @@ public class PlayerTest {
         Player player = new Player(100, 200, 350);
         assertEquals(true, player.getPlayable());
     }
+    
+    @Test
+    public void move(){
+        Player player = new Player(100, 200, 250);
+        player.moveRight();
+        assertEquals(5, player.getSpeedX());
+        player.stop();
+        assertEquals(0, player.getSpeedX());
+        player.moveLeft();
+        assertEquals(-5, player.getSpeedX());
+        player.stop();
+        player.moveUp();
+        assertEquals(-5, player.getSpeedY());
+        player.stop();
+        player.moveDown();
+        assertEquals(5, player.getSpeedY());
+        
+    }
 }

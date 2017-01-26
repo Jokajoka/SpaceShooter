@@ -15,12 +15,37 @@ import java.awt.event.KeyEvent;
 public class Movement implements KeyListener {
     
     //keyListener superluokan metodit.
+    private Player player;
     
+    public Movement(Player x){
+        this.player = x;
+    }
     // Lisätään toiminta painettaessa.
     @Override
     public void keyPressed(KeyEvent a){
         
-        key(a);
+        switch (a.getKeyCode()){
+            
+            case KeyEvent.VK_W:
+                this.player.moveUp();
+                break;
+            
+            case KeyEvent.VK_S:
+                this.player.moveDown();
+                break;
+            
+            case KeyEvent.VK_A:
+                this.player.moveLeft();
+                break;
+            
+            case KeyEvent.VK_D:
+                this.player.moveRight();
+                break;
+                
+            case KeyEvent.VK_SPACE:
+                this.player.fire();
+                break;
+        }
       
     }
     
@@ -28,37 +53,32 @@ public class Movement implements KeyListener {
     @Override
     public void keyReleased(KeyEvent a){
        
-        key(a);
+        switch (a.getKeyCode()){
+            
+            case KeyEvent.VK_W:
+                this.player.stop();
+                break;
+            
+            case KeyEvent.VK_S:
+                this.player.stop();
+                break;
+            
+            case KeyEvent.VK_A:
+                this.player.stop();
+                break;
+            
+            case KeyEvent.VK_D:
+                this.player.stop();
+                break;
+                
+            case KeyEvent.VK_SPACE:
+                this.player.stopFire();
+                break;
+        }
         
     }
     //Ei tarvita pelissä, mutta täytyi löytyä aliluokalta.
     @Override
     public void keyTyped(KeyEvent a){}
-    
-    // Itse näppäimen kuuntelu   
-    public void key(KeyEvent a){
-        switch (a.getKeyCode()){
-            
-            case KeyEvent.VK_W:
-                System.out.println("W");
-                break;
-            
-            case KeyEvent.VK_S:
-                System.out.println("S");
-                break;
-            
-            case KeyEvent.VK_A:
-                System.out.println("A");
-                break;
-            
-            case KeyEvent.VK_D:
-                System.out.println("D");
-                break;
-                
-            case KeyEvent.VK_SPACE:
-                System.out.println("FIRE");
-                break;
-        }
-    }
-    
+        
 }

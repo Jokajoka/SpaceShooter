@@ -40,10 +40,6 @@ public class EnemyTest {
     @Test
     public void playability() {
         Enemy enemy = new Enemy(100, 200, -100, 1.0);
-        if (enemy.getPlayable() == false){
-            System.out.println("True");
-        } else {
-            System.out.println("False");
-        }
+        assertEquals(false, enemy.getPlayable());
     }
 }

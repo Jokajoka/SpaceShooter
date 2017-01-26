@@ -43,4 +43,33 @@ public class Player extends Unit{
         
     }
     
+    public void moveLeft(){
+        this.setSpeedX(-5);
+    }
+    
+    public void moveRight(){
+        this.setSpeedX(5);
+    }
+    
+    public void moveUp(){
+        this.setSpeedY(-5);
+    }
+    
+    public void moveDown(){
+        this.setSpeedY(5);
+    }
+    
+    public void stop(){
+        this.setSpeedX(0);
+        this.setSpeedY(0);
+    }
+    
+    public void fire(){
+        this.setFire(true);
+    }
+    
+    public void stopFire(){
+        this.setFire(false);
+    }
+    
 }

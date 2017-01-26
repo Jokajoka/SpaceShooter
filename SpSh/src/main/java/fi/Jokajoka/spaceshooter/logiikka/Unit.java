@@ -18,11 +18,14 @@ public class Unit {
     private int posY;
     private int speedX;
     private int speedY;
+    private boolean fire = false;
 
     public Unit(int health, int posX, int posY) {
         this.health = health;
         this.speedX = 0;
         this.speedY = 0;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void heal(int amount) {
@@ -59,6 +62,22 @@ public class Unit {
     
     public int getPosY(){
         return this.posY;
+    }
+    
+    public void setSpeedX(int speed){
+        this.speedX = speed;
+    }
+    
+    public void setSpeedY(int speed){
+        this.speedY = speed;
+    }
+    
+    public int getSpeedX(){
+        return this.speedX;
+    }
+    
+    public int getSpeedY(){
+        return this.speedY;
     }
 
     public void setPlayable(boolean set) {
@@ -133,6 +152,10 @@ public class Unit {
                 this.posY = 0;
             }
         }
+    }
+    
+    public void setFire(boolean value){
+        this.fire = value;
     }
 
 }
