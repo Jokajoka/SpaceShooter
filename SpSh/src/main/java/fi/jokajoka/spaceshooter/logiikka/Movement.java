@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.Jokajoka.spaceshooter.logiikka;
+package fi.jokajoka.spaceshooter.logiikka;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -17,14 +17,14 @@ public class Movement implements KeyListener {
     //keyListener superluokan metodit.
     private Player player;
     
-    public Movement(Player x){
+    public Movement(Player x) {
         this.player = x;
     }
     // Lisätään toiminta painettaessa.
     @Override
-    public void keyPressed(KeyEvent a){
+    public void keyPressed(KeyEvent a) {
         
-        switch (a.getKeyCode()){
+        switch (a.getKeyCode()) {
             
             case KeyEvent.VK_W:
                 this.player.moveUp();
@@ -51,9 +51,9 @@ public class Movement implements KeyListener {
     
     //Lisätään otiminta vapautettaessa. Toistaiseksi sama, mutta tulee muuttumaan myöhemmin.
     @Override
-    public void keyReleased(KeyEvent a){
+    public void keyReleased(KeyEvent a) {
        
-        switch (a.getKeyCode()){
+        switch (a.getKeyCode()) {
             
             case KeyEvent.VK_W:
                 this.player.stop();

@@ -1,10 +1,12 @@
+package fi.jokajoka.spaceshooter.logiikka;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import fi.Jokajoka.spaceshooter.logiikka.Enemy;
+import fi.jokajoka.spaceshooter.logiikka.Enemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

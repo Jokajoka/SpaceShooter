@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.Jokajoka.spaceshooter.logiikka;
+package fi.jokajoka.spaceshooter.logiikka;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,7 +12,7 @@ import java.awt.Image;
  *
  * @author kahonjon
  */
-public class Player extends Unit{
+public class Player extends Unit {
     
     private boolean alive;
     
@@ -34,7 +34,7 @@ public class Player extends Unit{
     
     
     
-    public void update(){
+    public void update() {
         
             //liikuttaa pelaajaa x suunnassa.
         this.setPosX();
@@ -43,32 +43,32 @@ public class Player extends Unit{
         
     }
     
-    public void moveLeft(){
+    public void moveLeft() {
         this.setSpeedX(-5);
     }
     
-    public void moveRight(){
+    public void moveRight() {
         this.setSpeedX(5);
     }
     
-    public void moveUp(){
+    public void moveUp() {
         this.setSpeedY(-5);
     }
     
-    public void moveDown(){
+    public void moveDown() {
         this.setSpeedY(5);
     }
     
-    public void stop(){
+    public void stop() {
         this.setSpeedX(0);
         this.setSpeedY(0);
     }
     
-    public void fire(){
+    public void fire() {
         this.setFire(true);
     }
     
-    public void stopFire(){
+    public void stopFire() {
         this.setFire(false);
     }
     

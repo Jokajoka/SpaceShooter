@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.Jokajoka.spaceshooter.logiikka;
+package fi.jokajoka.spaceshooter.logiikka;
 
 /**
  *
@@ -29,7 +29,7 @@ public class Unit {
     }
 
     public void heal(int amount) {
-        if (this.health + amount > 100) {
+        if (this.health + amount < 100) {
             this.health = this.health + amount;
         } else {
             this.health = 100;
@@ -56,27 +56,27 @@ public class Unit {
         this.damage = damage;
     }
     
-    public int getPosX(){
+    public int getPosX() {
         return this.posX;
     }
     
-    public int getPosY(){
+    public int getPosY() {
         return this.posY;
     }
     
-    public void setSpeedX(int speed){
+    public void setSpeedX(int speed) {
         this.speedX = speed;
     }
     
-    public void setSpeedY(int speed){
+    public void setSpeedY(int speed) {
         this.speedY = speed;
     }
     
-    public int getSpeedX(){
+    public int getSpeedX() {
         return this.speedX;
     }
     
-    public int getSpeedY(){
+    public int getSpeedY() {
         return this.speedY;
     }
 
@@ -113,8 +113,8 @@ public class Unit {
                 //tarkistetaan, ettei olla reunalla
             if (this.posX != 0) {
                     //tarkistetaan, ettei mennä yli reunasta
-                if (this.posX - this.speedX >= 0) {
-                    this.posX = this.posX - this.speedX;
+                if (this.posX + this.speedX >= 0) {
+                    this.posX = this.posX + this.speedX;
                 } else {
                     this.posX = 0;
                 }
@@ -143,8 +143,8 @@ public class Unit {
                 //tarkistetaan, ettei olla reunalla
             if (this.posY != 0) {
                     //tarkistetaan, ettei mennä yli reunasta
-                if (this.posY - this.speedY >= 0) {
-                    this.posY = this.posY - this.speedY;
+                if (this.posY + this.speedY >= 0) {
+                    this.posY = this.posY + this.speedY;
                 } else {
                     this.posY = 0;
                 }
@@ -154,8 +154,12 @@ public class Unit {
         }
     }
     
-    public void setFire(boolean value){
+    public void setFire(boolean value) {
         this.fire = value;
+    }
+    
+    public boolean getFire() {
+        return this.fire;
     }
 
 }
