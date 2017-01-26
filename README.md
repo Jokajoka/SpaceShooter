@@ -1,5 +1,5 @@
-# SpaceShoote
-SpSh
+# SpaceShooter
+-Avaruus Räiskintä-
 <br>
 SpaceShooter on klassikko peli Space Invadersia jäljittelevä avaruusräiskintä
 jossa pyritään ampumalla tuhoamaan vastaan tulevat vihollisalukset.
