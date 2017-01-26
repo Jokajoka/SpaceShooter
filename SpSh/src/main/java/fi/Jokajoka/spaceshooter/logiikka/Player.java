@@ -5,6 +5,9 @@
  */
 package fi.Jokajoka.spaceshooter.logiikka;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
 /**
  *
  * @author kahonjon
@@ -12,6 +15,8 @@ package fi.Jokajoka.spaceshooter.logiikka;
 public class Player extends Unit{
     
     private boolean alive;
+    
+    
     
     
     public Player(int health, int posX, int posY) {
@@ -26,6 +31,8 @@ public class Player extends Unit{
         this.alive = true;
         
     }
+    
+    
     
     public void update(){
         

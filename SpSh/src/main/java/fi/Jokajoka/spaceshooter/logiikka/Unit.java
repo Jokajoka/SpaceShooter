@@ -52,6 +52,14 @@ public class Unit {
     public void setDamage(double damage) {
         this.damage = damage;
     }
+    
+    public int getPosX(){
+        return this.posX;
+    }
+    
+    public int getPosY(){
+        return this.posY;
+    }
 
     public void setPlayable(boolean set) {
         if (set == true) {

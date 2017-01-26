@@ -41,20 +41,13 @@ public class PlayerTest {
     public void damage() {
         Player player = new Player(100, 200, 350);
         player.reduce(15);
-        if (player.getHealth() == 85){
-            System.out.println("True");
-        } else {
-            System.out.println("False");
-        }
+        int vastaus = player.getHealth();
+        assertEquals(85, vastaus);
     }
     
     @Test
     public void playability() {
         Player player = new Player(100, 200, 350);
-        if (player.getPlayable() == false){
-            System.out.println("false");
-        } else {
-            System.out.println("true");
-        }
+        assertEquals(true, player.getPlayable());
     }
 }
