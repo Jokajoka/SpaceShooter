@@ -14,12 +14,13 @@ import java.awt.event.KeyEvent;
  */
 public class Movement implements KeyListener {
     
-    //keyListener superluokan metodit.
+    
     private Player player;
     
     public Movement(Player x) {
         this.player = x;
     }
+    //keyListener superluokan metodit.
     // Lisätään toiminta painettaessa.
     @Override
     public void keyPressed(KeyEvent a) {
