@@ -9,5 +9,5 @@ jossa pyritään ampumalla tuhoamaan vastaan tulevat vihollisalukset.
 <br>
 [Tuntikirjanpito](Dokumentaatio/Tuntikirjanpito.md)
 <br>
-[pit-raportti](file:///home/jonathan/varjorepo/Dokumentaatio/pit/201701261757/index.html)
-[checkstyle-raportti](file:///home/jonathan/varjorepo/Dokumentaatio/site/checkstyle.html)
+[pit-raportti](https://htmlpreview.github.io/?https://github.com/Jokajoka/SpaceShooter/blob/master/Dokumentaatio/pit/201701261757/index.html)
+[checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/Jokajoka/SpaceShooter/blob/master/Dokumentaatio/site/checkstyle.html)
