@@ -10,3 +10,4 @@ Päivä | Tunnit | Kuvaus
 26.01.2017 | 1h | Projektin työstöä.
 26.01.2017 | 4h | Projektin työstö, pit- ja checkstyle raportit. JUnit testien teko sekä game loop opettelua.
 27.01.2017 | 3h | Luokkakaavion opettelua, sekä luontia
+03.02.2017 | 8h | Yritystä saada TMC beans toimimaan kotikoneella.

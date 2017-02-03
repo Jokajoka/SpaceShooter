@@ -19,3 +19,4 @@ Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään t
 * Ampuminen
 * Keräily
 * Boostien hyödyntäminen
+![Alt text](https://yuml.me/11e5e7bc)
