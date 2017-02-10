@@ -19,6 +19,14 @@ public class Player extends Unit {
 
     private boolean alive;
 
+/**
+ * Unit superluokan perivä luokka, jolla luodaan itse pelaaja peliin.
+ *
+ * @param	syote	terveys alussa, x-koordinaatti alussa, y-koordinaatti alussa
+ *
+ * @return Player-olio
+ */
+
     public Player(int health, int posX, int posY) {
 
         //asettaa pelaajan alkusijainnin.
@@ -32,11 +40,29 @@ public class Player extends Unit {
 
     }
 
+/**
+ * Metodi, joka suoritetaan, kun pelaaja kerää kentältä buff olion. 
+ * Tarkoituksena muuttaa pelaajan oliomuuttujien arvoa.
+ *
+ * @param	syote	Buff-olio
+ *
+ * @return void
+ */
+
     public void getBuff(Buff buff) {
         if (buff.getType().equals("a")) {
             this.setDamage(this.getDamage() * 2);
         }
     }
+
+/**
+ * Metodi, joka suoritetaan jokaisessa game-loopin vaiheessa.
+ * Tarkoituksena päivittää pelaajan sijainti.
+ *
+ * @param	syote
+ *
+ * @return void
+ */
 
     public void update() {
 
@@ -46,6 +72,16 @@ public class Player extends Unit {
         this.setPosY();
 
     }
+
+
+/**
+ * Useita metodeja, joita on tarkoitus kutsua näppäinten painalluksien yhteydessä 
+ * Tarkoituksena muuttaa pelaajan nopeutta eri suuntiin, sekä ohjata tulitusta.
+ *
+ * @param	syote	
+ *
+ * @return void
+ */
 
     public void moveLeft() {
         this.setSpeedX(-5);

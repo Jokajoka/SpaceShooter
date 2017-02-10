@@ -19,11 +19,27 @@ public class BackGround {
     private Image image;
     private URL base;
 
+/**
+ * Metodilla luodaan uusi taustakuva-olio. 
+ *
+ * @param	syote	x-koordinaatti alussa, y-koordinaatti alussa
+ *
+ * @return BackGround-olio
+ */
+
     public BackGround(int posX, int posY) {
 
         this.posX = posX;
         this.posY = posY;
     }
+
+/**
+ * Metodilla määritetään käytettävä taustakuva olio-muuttujaan. 
+ *
+ * @param	syote	kuvatiedosto
+ *
+ * @return void
+ */
 
     public void addImage(Image image) {
         this.image = image;
@@ -40,6 +56,14 @@ public class BackGround {
     public int getPosY() {
         return this.posY;
     }
+
+/**
+ * 2 metodia, joilla muutetaan olion sijaintia pystysuunnassa.
+ *
+ * @param	syote	siirrettävä määrä kokonaislukuna
+ *
+ * @return void
+ */
 
     public void moveDown(int y) {
         this.posY = this.posY + y;

@@ -19,6 +19,14 @@ public class Unit {
     private int speedX;
     private int speedY;
     private boolean fire = false;
+/**
+ * Unit luokka toimii superluokkana sekä pelaajalle, että pleissä esiintyville vihollisille.
+ * Kaikille uniteille on ominaista sijainti x ja y suunnassa, sekä terveyden määrä.
+ *
+ * @param	syote	Luonnin yhteydessä annettavat alkuarvot
+ *
+ * @return uusi Unit-olio
+ */
 
     public Unit(int health, int posX, int posY) {
         this.health = health;
@@ -28,6 +36,14 @@ public class Unit {
         this.posY = posY;
     }
 
+/**
+ * Metodi parantaa kyseisen olion terveyden määrää annetun määrän ylittämättä arvoa 100.
+ *
+ * @param	syote	Parannettava määrä
+ *
+ * @return void
+ */
+
     public void heal(int amount) {
         if (this.health + amount < 100) {
             this.health = this.health + amount;
@@ -35,7 +51,13 @@ public class Unit {
             this.health = 100;
         }
     }
-
+/**
+ * Metodi vähentää kyseisen olion terveyden määrää annetun määrän alittamatta arvoa 0.
+ *
+ * @param	syote	Vähennettävä määrä
+ *
+ * @return void
+ */
     public void reduce(int amount) {
         if (this.health > amount) {
             this.health = this.health - amount;

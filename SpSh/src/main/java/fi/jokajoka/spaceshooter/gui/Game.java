@@ -25,10 +25,10 @@ public class Game extends Canvas implements Runnable {
 
     private boolean running = false;
     private Thread thread;
-    public static int height = 400;
-    public static int width = 400;
-    public String title = "SpaceShooter";
-    public ArrayList<Integer> state = new ArrayList<>();
+    private static int height = 400;
+    private static int width = 400;
+    private String title = "SpaceShooter";
+    private ArrayList<Integer> state = new ArrayList<>();
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
     public static void main(String[] args) {

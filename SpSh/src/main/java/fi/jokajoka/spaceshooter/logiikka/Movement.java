@@ -51,7 +51,7 @@ public class Movement implements KeyListener {
       
     }
     
-    //Lisätään otiminta vapautettaessa. Toistaiseksi sama, mutta tulee muuttumaan myöhemmin.
+    //Lisätään toiminta vapautettaessa. Toistaiseksi sama, mutta tulee muuttumaan myöhemmin.
     @Override
     public void keyReleased(KeyEvent a) {
        

@@ -13,6 +13,13 @@ import fi.jokajoka.spaceshooter.units.Unit;
  */
 public class Enemy extends Unit {
     
+/**
+ * Metodilla luodaan uusi Enemy-olio. 
+ *
+ * @param	syote	terveys alussa, x-koordinaatti alussa, y-koordinaatti alussa, tuotettavan vahingon määrä alussa
+ *
+ * @return Enemy-olio
+ */
     public Enemy(int health, int posX, int posY, double damage) {
         super(health, posX, posY);
         this.setDamage(damage);

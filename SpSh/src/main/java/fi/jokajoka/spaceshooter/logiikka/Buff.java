@@ -13,6 +13,14 @@ public class Buff {
 
     private String type;
 
+/**
+ * Metodilla luodaan uusi Buff-olio. 
+ *
+ * @param	syote	olion tyyppi merkkijonona
+ *
+ * @return Buff-olio
+ */
+
     public Buff(String type) {
         this.type = type;
     }
