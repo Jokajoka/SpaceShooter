@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 6,
+      <title>File: 7,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Unit.java">fi/jokajoka/spaceshooter/logiikka/Unit.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.units.Unit.java">fi/jokajoka/spaceshooter/units/Unit.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Game.java">fi/jokajoka/spaceshooter/logiikka/Game.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Buff.java">fi/jokajoka/spaceshooter/logiikka/Buff.java</a>
                 </td>
                 <td>
                   0
@@ -74,21 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Player.java">fi/jokajoka/spaceshooter/logiikka/Player.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Enemy.java">fi/jokajoka/spaceshooter/logiikka/Enemy.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.gui.Game.java">fi/jokajoka/spaceshooter/gui/Game.java</a>
                 </td>
                 <td>
                   0
@@ -103,6 +89,34 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.BackGround.java">fi/jokajoka/spaceshooter/logiikka/BackGround.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.units.Enemy.java">fi/jokajoka/spaceshooter/units/Enemy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.units.Player.java">fi/jokajoka/spaceshooter/units/Player.java</a>
                 </td>
                 <td>
                   0
