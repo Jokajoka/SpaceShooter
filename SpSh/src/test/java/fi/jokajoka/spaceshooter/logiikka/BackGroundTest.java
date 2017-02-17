@@ -40,11 +40,6 @@ public class BackGroundTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void noImageTest() {
-        BackGround bg = new BackGround(0, 0);
-        assertEquals(null, bg.getImage());
-    }
     
     @Test
     public void posXTest(){

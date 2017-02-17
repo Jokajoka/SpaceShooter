@@ -5,6 +5,7 @@ package fi.jokajoka.spaceshooter.units;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import fi.jokajoka.spaceshooter.gui.Game;
 import fi.jokajoka.spaceshooter.units.Player;
 import fi.jokajoka.spaceshooter.logiikka.Buff;
 import org.junit.After;
@@ -115,12 +116,12 @@ public class PlayerTest {
         player.setSpeedX(5);
         player.setPosX();
         assertEquals(395, player.getPosX());
-        player.setSpeedX(6);
+        player.setSpeedX(406);
         player.setPosX();
-        assertEquals(400, player.getPosX());
+        assertEquals(740, player.getPosX());
         player.setPosX();
-        assertEquals(400, player.getPosX());
-        player.setSpeedX(-401);
+        assertEquals(740, player.getPosX());
+        player.setSpeedX(-801);
         player.setPosX();
         assertEquals(0, player.getPosX());
     }
@@ -131,12 +132,12 @@ public class PlayerTest {
         player.setSpeedY(5);
         player.setPosY();
         assertEquals(395, player.getPosY());
-        player.setSpeedY(6);
+        player.setSpeedY(406);
         player.setPosY();
-        assertEquals(400, player.getPosY());
+        assertEquals(740, player.getPosY());
         player.setPosY();
-        assertEquals(400, player.getPosY());
-        player.setSpeedY(-401);
+        assertEquals(740, player.getPosY());
+        player.setSpeedY(-801);
         player.setPosY();
         assertEquals(0, player.getPosY());
     }

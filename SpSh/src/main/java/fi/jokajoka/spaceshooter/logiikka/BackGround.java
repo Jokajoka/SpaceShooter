@@ -5,48 +5,38 @@
  */
 package fi.jokajoka.spaceshooter.logiikka;
 
+import fi.jokajoka.spaceshooter.gui.Loader;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 
 /**
- *
  * @author kahonjon
  */
 public class BackGround {
 
     private int posX;
     private int posY;
-    private Image image;
-    private URL base;
+    private BufferedImage bg;
 
-/**
- * Metodilla luodaan uusi taustakuva-olio. 
- *
- * @param	syote	x-koordinaatti alussa, y-koordinaatti alussa
- *
- * @return BackGround-olio
- */
-
+    /**
+     * Metodilla luodaan uusi taustakuva-olio.
+     *
+     * @param posX x-koordinaatti
+     * @param posY y-koordinaatti
+     */
     public BackGround(int posX, int posY) {
 
         this.posX = posX;
         this.posY = posY;
-    }
+        try {
+            bg = new Loader().load("/bg1.png");
+        } catch (IOException e) {
+            System.out.println("Fail");
+        }
 
-/**
- * Metodilla määritetään käytettävä taustakuva olio-muuttujaan. 
- *
- * @param	syote	kuvatiedosto
- *
- * @return void
- */
-
-    public void addImage(Image image) {
-        this.image = image;
-    }
-
-    public Image getImage() {
-        return this.image;
     }
 
     public int getPosX() {
@@ -57,20 +47,37 @@ public class BackGround {
         return this.posY;
     }
 
-/**
- * 2 metodia, joilla muutetaan olion sijaintia pystysuunnassa.
- *
- * @param	syote	siirrettävä määrä kokonaislukuna
- *
- * @return void
- */
-
+    /**
+     * 2 metodia, joilla muutetaan olion sijaintia pystysuunnassa.
+     *
+     * @param y muutos
+     */
     public void moveDown(int y) {
         this.posY = this.posY + y;
     }
 
+    /**
+     * @param y muutos
+     */
     public void moveUp(int y) {
         this.posY = this.posY - y;
+    }
+
+    /**
+     * @param g piirto-olio
+     */
+    public void paint(Graphics g) {
+        g.drawImage(bg, this.getPosX(), this.getPosY(), null);
+    }
+
+    /**
+     * Tällä päivitetään taustakuvan tila.
+     */
+    public void update() {
+        this.moveDown(1);
+        if (this.getPosY() == -1) {
+            this.moveUp(799);
+        }
     }
 
 }

@@ -6,21 +6,17 @@
 package fi.jokajoka.spaceshooter.logiikka;
 
 /**
- *
  * @author kahonjon
  */
 public class Buff {
 
     private String type;
 
-/**
- * Metodilla luodaan uusi Buff-olio. 
- *
- * @param	syote	olion tyyppi merkkijonona
- *
- * @return Buff-olio
- */
-
+    /**
+     * Metodilla luodaan uusi Buff-olio.
+     *
+     * @param	type	olion tyyppi merkkijonona
+     */
     public Buff(String type) {
         this.type = type;
     }

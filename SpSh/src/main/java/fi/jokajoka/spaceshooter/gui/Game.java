@@ -5,20 +5,21 @@
  */
 package fi.jokajoka.spaceshooter.gui;
 
+import fi.jokajoka.spaceshooter.logiikka.BackGround;
+import fi.jokajoka.spaceshooter.logiikka.Movement;
+import fi.jokajoka.spaceshooter.units.Enemy;
 import fi.jokajoka.spaceshooter.units.Player;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
- *
  * @author kahonjon
  */
 public class Game extends Canvas implements Runnable {
@@ -27,12 +28,24 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private static int height = 400;
     private static int width = 400;
-    private String title = "SpaceShooter";
-    private ArrayList<Integer> state = new ArrayList<>();
+    private final String title = "SpaceShooter";
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage ss = null;
 
+    private Player player;
+    private BackGround bg;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private Random random = new Random(2);
+
+    /**
+     * Päämetodi, jossa luodaan ilmentymä itse pelistä. Samassa luodaan myös
+     * ikkuna otsikkoineen, sekä ulottovuuksineen ja lopulta ajetaan
+     * start-metodi.
+     *
+     * @param args Kuvaus
+     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         Game instance = new Game();
 
         Dimension d = new Dimension(width * 2, height * 2);
@@ -40,9 +53,9 @@ public class Game extends Canvas implements Runnable {
 
         JFrame frame = new JFrame(instance.title);
         frame.add(instance);
-        frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
 
         instance.start();
 
@@ -58,18 +71,22 @@ public class Game extends Canvas implements Runnable {
         int updates = 0;
         int frames = 0;
         long timer = System.currentTimeMillis();
+      
 
         while (running) {
             long now = System.nanoTime();
             delta += (now - previousT) / nanoseconds;
             previousT = now;
             if (delta >= 1) {
-                tick();
+                update();
+                
+                
                 updates++;
                 delta--;
             }
-            //update();
+
             repaint();
+
             frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {
@@ -82,6 +99,10 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /**
+     * Käynnistetään thread. Mikäli jostain syystä sattuisi tilanne, että start
+     * metodi ajettaisiin toisen kerran, ohjelma hyppää pois metodista.
+     */
     public synchronized void start() {
         if (running == true) {
             return;
@@ -92,6 +113,10 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Luonnollisesti pysäytetään thread. Mikäli metodi ajetaan syystä tai
+     * toisesta vielä pysähtymisen jälkeen, ohjelma hyppää sieltä suoraan pois.
+     */
     public synchronized void stop() {
         if (running == false) {
             return;
@@ -106,14 +131,42 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Kun peli käynnistyy, init metodi suoritetaan ensimmäisenä. Tässä luodaan
+     * ilmentymät kuvan lataajasta, pelaajasta, taustakuvasta sekä näppäimistön
+     * kuuntelijasta.
+     */
     public void init() {
+        Loader loader = new Loader();
+        try {
+            ss = loader.load("/playerSS.png");
+        } catch (IOException e) {
+            System.out.println("Fail");
+        }
+
+        player = new Player(100, 370, 670, this);
+        bg = new BackGround(0, -800);
+
+        addKeyListener(new Movement(this.player));
 
     }
 
-    public void tick() {
-
+    /**
+     * Tämä metodi ajetaan jokaisella pelin sydämmen sykähdyksellä.
+     * Tarkoituksena on päivittää objektien tila.
+     */
+    public void update() {
+        bg.update();
+        player.update();
+        for (Enemy enemy : enemies) {
+            enemy.update();
+            if (enemy.getPosY() == 740) {
+                enemies.remove(enemy);
+            }
+        }
     }
 
+    @Override
     public void repaint() {
         BufferStrategy buffer = this.getBufferStrategy();
         if (buffer == null) {
@@ -121,10 +174,26 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = buffer.getDrawGraphics();
-        g.drawImage(image, 0, 0, getHeight(), getWidth(), this);
+
+        g.drawImage(image, 0, 0, 800, 800, this);
+        bg.paint(g);
+        player.paint(g);
+        for (Enemy enemy : enemies) {
+            enemy.paint(g);
+        }
 
         g.dispose();
         buffer.show();
+    }
+
+    /**
+     * Tällä metodilla päästään itse pelin ilmentymään tallennettuun SpriteSheet
+     * kuvaan käsiksi muista luokista.
+     *
+     * @return BufferedImage ss
+     */
+    public BufferedImage getSheet() {
+        return ss;
     }
 
 }

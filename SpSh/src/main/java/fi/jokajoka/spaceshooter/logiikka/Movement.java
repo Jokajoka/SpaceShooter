@@ -10,77 +10,79 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 /**
- *
  * @author kahonjon
  */
 public class Movement implements KeyListener {
-    
-    
+
     private Player player;
-    
+
+    /**
+     * Näppäimistön kuuntelija. Kuuntelijalle annetaan parametriksi Player-olio.
+     *
+     * @param x Player-olio
+     */
     public Movement(Player x) {
         this.player = x;
     }
-    //keyListener superluokan metodit.
-    // Lisätään toiminta painettaessa.
+
     @Override
     public void keyPressed(KeyEvent a) {
-        
+
         switch (a.getKeyCode()) {
-            
+
             case KeyEvent.VK_W:
                 this.player.moveUp();
                 break;
-            
+
             case KeyEvent.VK_S:
                 this.player.moveDown();
                 break;
-            
+
             case KeyEvent.VK_A:
                 this.player.moveLeft();
                 break;
-            
+
             case KeyEvent.VK_D:
                 this.player.moveRight();
                 break;
-                
+
             case KeyEvent.VK_SPACE:
                 this.player.fire();
                 break;
         }
-      
+
     }
-    
-    //Lisätään toiminta vapautettaessa. Toistaiseksi sama, mutta tulee muuttumaan myöhemmin.
+
     @Override
     public void keyReleased(KeyEvent a) {
-       
+
         switch (a.getKeyCode()) {
-            
+
             case KeyEvent.VK_W:
-                this.player.stop();
+                this.player.setSpeedY(0);
                 break;
-            
+
             case KeyEvent.VK_S:
-                this.player.stop();
+                this.player.setSpeedY(0);
                 break;
-            
+
             case KeyEvent.VK_A:
-                this.player.stop();
+                this.player.setSpeedX(0);
                 break;
-            
+
             case KeyEvent.VK_D:
-                this.player.stop();
+                this.player.setSpeedX(0);
                 break;
-                
+
             case KeyEvent.VK_SPACE:
                 this.player.stopFire();
                 break;
         }
-        
+
     }
-    //Ei tarvita pelissä, mutta täytyi löytyä aliluokalta.
+
     @Override
-    public void keyTyped(KeyEvent a){}
-        
+    public void keyTyped(KeyEvent a) {
+    }
+
 }
