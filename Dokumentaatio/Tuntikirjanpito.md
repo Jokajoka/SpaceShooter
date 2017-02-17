@@ -12,3 +12,4 @@ Päivä | Tunnit | Kuvaus
 27.01.2017 | 3h | Luokkakaavion opettelua, sekä luontia
 03.02.2017 | 8h | Yritystä saada TMC beans toimimaan kotikoneella.
 10.02.2017 | 6h | Ohjelmointia ja testailua. maven ja checkstyle päivitystä.
+17.02.2017 | 8h | Ohjelmointia, javadocin päivittelyä ja sekvenssikaavioiden aloitus.
