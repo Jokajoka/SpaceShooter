@@ -9,8 +9,10 @@ import fi.jokajoka.spaceshooter.gui.Game;
 import fi.jokajoka.spaceshooter.gui.SS;
 import fi.jokajoka.spaceshooter.logiikka.Buff;
 import fi.jokajoka.spaceshooter.logiikka.Movement;
+import fi.jokajoka.spaceshooter.logiikka.Projectile;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * @author kahonjon
@@ -20,6 +22,11 @@ public class Player extends Unit {
     private boolean alive;
     private BufferedImage player;
     private Movement movement;
+    private int chargeShoot;
+    private Game instance;
+    private ArrayList<Projectile> ammo = new ArrayList<>();
+    private ArrayList<Projectile> removeAmmo = new ArrayList<>();
+    private int killed = 0;
 
     /**
      * Unit superluokan perivä luokka, jolla luodaan itse pelaaja peliin.
@@ -54,15 +61,21 @@ public class Player extends Unit {
         //asettaa pelaajan alkusijainnin.
         super(health, posX, posY);
         //asettaa pelaajan tekemän vahingon määrän.
-        this.setDamage(1.5);
+        this.setDamage(5.0);
         //asettaa pelaaja olion pelattavaan tilaan.
         this.setPlayable(true);
         //asettaa pelaajan "henkiin".
         this.alive = true;
+        this.instance = instance;
         SS ss = new SS(instance.getSheet());
         player = ss.crop(1, 1, 60, 60);
         this.movement = new Movement(this);
+        this.chargeShoot = 10;
 
+    }
+
+    public boolean getAlive() {
+        return this.alive;
     }
 
     /**
@@ -75,6 +88,29 @@ public class Player extends Unit {
         if (buff.getType().equals("a")) {
             this.setDamage(this.getDamage() * 2);
         }
+    }
+
+    public ArrayList<Projectile> getAmmo() {
+        return this.ammo;
+    }
+
+    public void shoot() {
+        if (this.chargeShoot == 30 && this.getFire() == true) {
+            this.ammo.add(new Projectile(this.instance, this));
+            this.chargeShoot = 0;
+        }
+    }
+
+    public int killed() {
+        return this.killed;
+    }
+
+    public void enemyDestroyed() {
+        this.killed++;
+    }
+
+    public void kill() {
+        this.alive = false;
     }
 
     /**
@@ -90,6 +126,18 @@ public class Player extends Unit {
         //sama y suunnassa.
         this.setPosY();
 
+        //ampumistiheyden rajoitus
+        shoot();
+
+        if (this.chargeShoot < 30) {
+            this.chargeShoot++;
+        }
+
+        for (Projectile projectile : this.ammo) {
+            if (projectile.getPosY() >= -100) {
+                projectile.update();
+            }
+        }
     }
 
     /**

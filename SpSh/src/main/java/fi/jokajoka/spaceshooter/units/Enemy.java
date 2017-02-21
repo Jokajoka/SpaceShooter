@@ -7,7 +7,6 @@ package fi.jokajoka.spaceshooter.units;
 
 import fi.jokajoka.spaceshooter.gui.Game;
 import fi.jokajoka.spaceshooter.gui.SS;
-import fi.jokajoka.spaceshooter.units.Unit;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -19,6 +18,8 @@ public class Enemy extends Unit {
 
     private BufferedImage image;
     private Random random = new Random();
+    private boolean alive;
+    private Game instance;
 
     /**
      * Metodilla luodaan uusi Enemy-olio.
@@ -49,7 +50,32 @@ public class Enemy extends Unit {
         this.setPlayable(false);
         SS ss = new SS(instance.getSheet());
         image = ss.crop(2, 1, 60, 60);
-        this.setSpeedY(3);
+        this.setSpeedY(1);
+        this.alive = true;
+        this.instance = instance;
+    }
+
+    public void kill() {
+        this.alive = false;
+    }
+
+    public boolean getAlive() {
+        return this.alive;
+    }
+
+    public void checkCollision(Player player) {
+        if ((player.getPosY() - this.getPosY() < 60)
+                && (player.getPosY() - this.getPosY() > 0)
+                && (player.getPosX() - this.getPosX() > -60)
+                && ((player.getPosX()) - this.getPosX() < 60)
+                && this.getAlive() == true) {
+            player.reduce(50);
+            this.kill();
+            if (player.getHealth() == 0) {
+                player.kill();
+            }
+            this.instance.getPlayer().enemyDestroyed();
+        }
     }
 
     /**
@@ -57,12 +83,19 @@ public class Enemy extends Unit {
      */
     public void update() {
         int ran = random.nextInt(2);
-        if (ran == 0) {
-            this.setSpeedX(3);
-        } else if (ran == 1) {
-            this.setSpeedX(-3);
-        } else if (ran == 2) {
-            this.setSpeedX(0);
+        if (random.nextInt(10) == 0) {
+            if (ran == 0) {
+                this.setSpeedX(1);
+            } else if (ran == 1) {
+                this.setSpeedX(-1);
+            } else if (ran == 2) {
+                this.setSpeedX(0);
+            }
+        }
+        if (getSpeedY() == 1) {
+            setSpeedY(0);
+        } else {
+            setSpeedY(1);
         }
 
         this.setPosY();

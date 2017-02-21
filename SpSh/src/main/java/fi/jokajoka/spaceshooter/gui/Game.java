@@ -6,7 +6,9 @@
 package fi.jokajoka.spaceshooter.gui;
 
 import fi.jokajoka.spaceshooter.logiikka.BackGround;
+import fi.jokajoka.spaceshooter.logiikka.Formation;
 import fi.jokajoka.spaceshooter.logiikka.Movement;
+import fi.jokajoka.spaceshooter.logiikka.Projectile;
 import fi.jokajoka.spaceshooter.units.Enemy;
 import fi.jokajoka.spaceshooter.units.Player;
 import java.awt.Canvas;
@@ -16,7 +18,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -35,11 +36,12 @@ public class Game extends Canvas implements Runnable {
     private Player player;
     private BackGround bg;
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private Random random = new Random(2);
+    private Formation formation;
+    private boolean victory = false;
 
     /**
-     * Päämetodi, jossa luodaan ilmentymä itse pelistä. Samassa luodaan myös
-     * ikkuna otsikkoineen, sekä ulottovuuksineen ja lopulta ajetaan
+     * PÃ¤Ã¤metodi, jossa luodaan ilmentymÃ¤ itse pelistÃ¤. Samassa luodaan
+     * myÃ¶s ikkuna otsikkoineen, sekÃ¤ ulottovuuksineen ja lopulta ajetaan
      * start-metodi.
      *
      * @param args Kuvaus
@@ -71,7 +73,6 @@ public class Game extends Canvas implements Runnable {
         int updates = 0;
         int frames = 0;
         long timer = System.currentTimeMillis();
-      
 
         while (running) {
             long now = System.nanoTime();
@@ -79,8 +80,7 @@ public class Game extends Canvas implements Runnable {
             previousT = now;
             if (delta >= 1) {
                 update();
-                
-                
+
                 updates++;
                 delta--;
             }
@@ -92,6 +92,8 @@ public class Game extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 System.out.println(updates + " Ticks, Fps " + frames);
+                // LisÃ¤Ã¤ toimintaa
+
                 updates = 0;
                 frames = 0;
             }
@@ -100,8 +102,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Käynnistetään thread. Mikäli jostain syystä sattuisi tilanne, että start
-     * metodi ajettaisiin toisen kerran, ohjelma hyppää pois metodista.
+     * KÃ¤ynnistetÃ¤Ã¤n thread. MikÃ¤li jostain syystÃ¤ sattuisi tilanne, ettÃ¤
+     * start metodi ajettaisiin toisen kerran, ohjelma hyppÃ¤Ã¤ pois metodista.
      */
     public synchronized void start() {
         if (running == true) {
@@ -114,8 +116,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Luonnollisesti pysäytetään thread. Mikäli metodi ajetaan syystä tai
-     * toisesta vielä pysähtymisen jälkeen, ohjelma hyppää sieltä suoraan pois.
+     * Luonnollisesti pysÃ¤ytetÃ¤Ã¤n thread. MikÃ¤li metodi ajetaan syystÃ¤ tai
+     * toisesta vielÃ¤ pysÃ¤htymisen jÃ¤lkeen, ohjelma hyppÃ¤Ã¤ sieltÃ¤ suoraan
+     * pois.
      */
     public synchronized void stop() {
         if (running == false) {
@@ -132,9 +135,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Kun peli käynnistyy, init metodi suoritetaan ensimmäisenä. Tässä luodaan
-     * ilmentymät kuvan lataajasta, pelaajasta, taustakuvasta sekä näppäimistön
-     * kuuntelijasta.
+     * Kun peli kÃ¤ynnistyy, init metodi suoritetaan ensimmÃ¤isenÃ¤. TÃ¤ssÃ¤
+     * luodaan ilmentymÃ¤t kuvan lataajasta, pelaajasta, taustakuvasta sekÃ¤
+     * nÃ¤ppÃ¤imistÃ¶n kuuntelijasta.
      */
     public void init() {
         Loader loader = new Loader();
@@ -143,27 +146,36 @@ public class Game extends Canvas implements Runnable {
         } catch (IOException e) {
             System.out.println("Fail");
         }
-
         player = new Player(100, 370, 670, this);
         bg = new BackGround(0, -800);
+        this.formation = new Formation(this);
+        formation.set();
 
         addKeyListener(new Movement(this.player));
-
     }
 
     /**
-     * Tämä metodi ajetaan jokaisella pelin sydämmen sykähdyksellä.
-     * Tarkoituksena on päivittää objektien tila.
+     * TÃ¤mÃ¤ metodi ajetaan jokaisella pelin sydÃ¤mmen sykÃ¤hdyksellÃ¤.
+     * Tarkoituksena on pÃ¤ivittÃ¤Ã¤ objektien tila.
      */
     public void update() {
         bg.update();
         player.update();
-        for (Enemy enemy : enemies) {
-            enemy.update();
-            if (enemy.getPosY() == 740) {
-                enemies.remove(enemy);
+        this.formation.update();
+        for (Enemy enemy : this.formation.getFormation()) {
+            for (Projectile projectile : this.player.getAmmo()) {
+                projectile.checkCollision(enemy);
             }
+            enemy.checkCollision(this.player);
         }
+        if (player.getAlive() == false || this.victory == true) {
+            repaint();
+            stop();
+        }
+        if (player.killed() == 15) {
+            this.victory = true;
+        }
+
     }
 
     @Override
@@ -178,8 +190,36 @@ public class Game extends Canvas implements Runnable {
         g.drawImage(image, 0, 0, 800, 800, this);
         bg.paint(g);
         player.paint(g);
-        for (Enemy enemy : enemies) {
-            enemy.paint(g);
+
+        for (Enemy enemy : this.formation.getFormation()) {
+            if (enemy.getAlive() == true) {
+                enemy.paint(g);
+            }
+        }
+        for (Projectile projectile : this.player.getAmmo()) {
+            if (projectile.getPosY() >= -80 && projectile.getUsable() == true) {
+                projectile.paint(g);
+            }
+        }
+
+        g.clearRect(20, 700, 100, 80);
+        g.drawString("Health: " + this.player.getHealth(), 40, 720);
+        g.drawString("Killed: " + this.player.killed(), 40, 760);
+        if (player.getAlive() == false) {
+            try {
+                BufferedImage death = new Loader().load("/death.png");
+                g.drawImage(death, 0, 0, 800, 800, this);
+            } catch (IOException e) {
+                System.out.println("Couldn't load image");
+            }
+        }
+        if (this.victory == true) {
+            try {
+                BufferedImage victory = new Loader().load("/victory.png");
+                g.drawImage(victory, 0, 0, 800, 800, this);
+            } catch (IOException e) {
+                System.out.println("Couldn't load image");
+            }
         }
 
         g.dispose();
@@ -187,13 +227,17 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Tällä metodilla päästään itse pelin ilmentymään tallennettuun SpriteSheet
-     * kuvaan käsiksi muista luokista.
+     * TÃ¤llÃ¤ metodilla pÃ¤Ã¤stÃ¤Ã¤n itse pelin ilmentymÃ¤Ã¤n tallennettuun
+     * SpriteSheet kuvaan kÃ¤siksi muista luokista.
      *
      * @return BufferedImage ss
      */
     public BufferedImage getSheet() {
         return ss;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
 }
