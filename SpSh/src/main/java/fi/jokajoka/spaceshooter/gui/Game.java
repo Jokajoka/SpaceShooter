@@ -182,7 +182,7 @@ public class Game extends Canvas implements Runnable {
     public void repaint() {
         BufferStrategy buffer = this.getBufferStrategy();
         if (buffer == null) {
-            createBufferStrategy(3);
+            createBufferStrategy(2);
             return;
         }
         Graphics g = buffer.getDrawGraphics();

@@ -95,7 +95,7 @@ public class Player extends Unit {
     }
 
     public void shoot() {
-        if (this.chargeShoot == 30 && this.getFire() == true) {
+        if (this.chargeShoot == 30) {
             this.ammo.add(new Projectile(this.instance, this));
             this.chargeShoot = 0;
         }
@@ -127,7 +127,10 @@ public class Player extends Unit {
         this.setPosY();
 
         //ampumistiheyden rajoitus
-        shoot();
+        if(this.getFire() == true){
+            shoot();
+        }
+        
 
         if (this.chargeShoot < 30) {
             this.chargeShoot++;
