@@ -93,6 +93,8 @@ public class Game extends Canvas implements Runnable {
                 timer += 1000;
                 System.out.println(updates + " Ticks, Fps " + frames);
                 // LisÃ¤Ã¤ toimintaa
+                System.out.println(this.formation.getFormation());
+                System.out.println(this.player.getAmmo());
 
                 updates = 0;
                 frames = 0;
@@ -159,9 +161,27 @@ public class Game extends Canvas implements Runnable {
      * Tarkoituksena on pÃ¤ivittÃ¤Ã¤ objektien tila.
      */
     public void update() {
+        ArrayList<Enemy> newEnemies = new ArrayList<>();
+        ArrayList<Projectile> newProjectiles = new ArrayList<>();
+        
         bg.update();
         player.update();
         this.formation.update();
+        
+        for (Enemy enemy: this.formation.getFormation()) {
+            if (enemy.getAlive() == true){
+                newEnemies.add(enemy);
+            }
+        }        
+        this.formation.setNew(newEnemies);
+        
+        for (Projectile projectile: this.player.getAmmo()) {
+            if (projectile.getUsable() == true){
+                newProjectiles.add(projectile);
+            }
+        }
+        this.player.setAmmo(newProjectiles);
+        
         for (Enemy enemy : this.formation.getFormation()) {
             for (Projectile projectile : this.player.getAmmo()) {
                 projectile.checkCollision(enemy);
@@ -189,7 +209,7 @@ public class Game extends Canvas implements Runnable {
 
         g.drawImage(image, 0, 0, 800, 800, this);
         bg.paint(g);
-        player.paint(g);
+        
 
         for (Enemy enemy : this.formation.getFormation()) {
             if (enemy.getAlive() == true) {
@@ -201,6 +221,8 @@ public class Game extends Canvas implements Runnable {
                 projectile.paint(g);
             }
         }
+        
+        player.paint(g);
 
         g.clearRect(20, 700, 100, 80);
         g.drawString("Health: " + this.player.getHealth(), 40, 720);

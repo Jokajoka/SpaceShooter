@@ -29,7 +29,7 @@ public class Projectile {
         this.instance = instance;
         SS ss = new SS(this.instance.getSheet());
         projectile = ss.crop(3, 1, 60, 60);
-        this.posY = unit.getPosY() - 61;
+        this.posY = unit.getPosY();
         this.posX = unit.getPosX();
     }
 

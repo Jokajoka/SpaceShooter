@@ -36,6 +36,10 @@ public class Formation {
             b = 0;
         }
     }
+    
+    public void setNew(ArrayList enemies){
+        this.enemies = enemies;
+    }
 
     public ArrayList<Enemy> getFormation() {
         return this.enemies;

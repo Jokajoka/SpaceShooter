@@ -93,6 +93,10 @@ public class Player extends Unit {
     public ArrayList<Projectile> getAmmo() {
         return this.ammo;
     }
+    
+    public void setAmmo(ArrayList<Projectile> newAmmo){
+        this.ammo = newAmmo;
+    }
 
     public void shoot() {
         if (this.chargeShoot == 30) {
