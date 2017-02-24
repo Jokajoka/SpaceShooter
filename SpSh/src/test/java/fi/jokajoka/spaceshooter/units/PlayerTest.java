@@ -5,9 +5,6 @@ package fi.jokajoka.spaceshooter.units;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import fi.jokajoka.spaceshooter.gui.Game;
-import fi.jokajoka.spaceshooter.units.Player;
-import fi.jokajoka.spaceshooter.logiikka.Buff;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -57,14 +54,12 @@ public class PlayerTest {
         Player player = new Player(100, 200, 350);
         player.setDamage(1.8);
         player.setFire(true);
-        player.setPlayable(false);
         player.setSpeedX(9);
         player.setSpeedY(9);
         player.setPosX();
         player.setPosY();
         assertEquals(1.8, player.getDamage(), 0);
         assertEquals(true, player.getFire());
-        assertEquals(false, player.getPlayable());
         assertEquals(9, player.getSpeedX());
         assertEquals(9, player.getSpeedY());
         assertEquals(209, player.getPosX());
@@ -77,12 +72,6 @@ public class PlayerTest {
         player.reduce(15);
         int vastaus = player.getHealth();
         assertEquals(85, vastaus);
-    }
-
-    @Test
-    public void playability() {
-        Player player = new Player(100, 200, 350);
-        assertEquals(true, player.getPlayable());
     }
 
     @Test
@@ -159,14 +148,6 @@ public class PlayerTest {
         assertEquals(true, player.getFire());
         player.setFire(false);
         assertEquals(false, player.getFire());
-    }
-
-    @Test
-    public void buffed() {
-        Player player = new Player(100, 200, 350);
-        assertEquals(1.5, player.getDamage(), 0);
-        player.getBuff(new Buff("a"));
-        assertEquals(3.0, player.getDamage(), 0);
     }
 
 }

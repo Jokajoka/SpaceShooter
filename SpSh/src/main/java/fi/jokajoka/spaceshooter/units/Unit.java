@@ -12,7 +12,6 @@ public class Unit {
 
     private int health;
     private double damage;
-    private boolean playable;
     private int posX;
     private int posY;
     private int speedX;
@@ -99,14 +98,6 @@ public class Unit {
 
     public int getSpeedY() {
         return this.speedY;
-    }
-
-    public void setPlayable(boolean set) {
-        this.playable = set;
-    }
-
-    public boolean getPlayable() {
-        return this.playable;
     }
 
     public void setPosX() {

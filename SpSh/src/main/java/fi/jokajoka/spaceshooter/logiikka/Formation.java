@@ -36,9 +36,15 @@ public class Formation {
             b = 0;
         }
     }
-    
-    public void setNew(ArrayList enemies){
-        this.enemies = enemies;
+
+    public void setNew() {
+        ArrayList<Enemy> newEnemies = new ArrayList<>();
+        for (Enemy enemy : this.enemies) {
+            if (enemy.getAlive() == true) {
+                newEnemies.add(enemy);
+            }
+        }
+        this.enemies = newEnemies;
     }
 
     public ArrayList<Enemy> getFormation() {
@@ -50,10 +56,9 @@ public class Formation {
     }
 
     public void update() {
-        for (Enemy toUpdate : this.enemies) {
-            if (toUpdate.getAlive() == true) {
-                toUpdate.update();
-            }
+        setNew();
+        for (Enemy enemy : this.enemies) {
+            enemy.update();
         }
     }
 

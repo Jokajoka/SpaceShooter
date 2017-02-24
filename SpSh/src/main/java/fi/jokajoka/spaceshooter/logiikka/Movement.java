@@ -5,6 +5,7 @@
  */
 package fi.jokajoka.spaceshooter.logiikka;
 
+import fi.jokajoka.spaceshooter.gui.SS;
 import fi.jokajoka.spaceshooter.units.Player;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -40,10 +41,12 @@ public class Movement implements KeyListener {
 
             case KeyEvent.VK_A:
                 this.player.moveLeft();
+                this.player.setImage(new SS(this.player.getGame().getSheet()).crop(1, 2, 60, 60));
                 break;
 
             case KeyEvent.VK_D:
                 this.player.moveRight();
+                this.player.setImage(new SS(this.player.getGame().getSheet()).crop(1, 3, 60, 60));
                 break;
 
             case KeyEvent.VK_SPACE:
@@ -68,10 +71,12 @@ public class Movement implements KeyListener {
 
             case KeyEvent.VK_A:
                 this.player.setSpeedX(0);
+                this.player.setImage(new SS(this.player.getGame().getSheet()).crop(1, 1, 60, 60));
                 break;
 
             case KeyEvent.VK_D:
                 this.player.setSpeedX(0);
+                this.player.setImage(new SS(this.player.getGame().getSheet()).crop(1, 1, 60, 60));
                 break;
 
             case KeyEvent.VK_SPACE:

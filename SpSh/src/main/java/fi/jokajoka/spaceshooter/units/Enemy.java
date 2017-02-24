@@ -7,6 +7,7 @@ package fi.jokajoka.spaceshooter.units;
 
 import fi.jokajoka.spaceshooter.gui.Game;
 import fi.jokajoka.spaceshooter.gui.SS;
+import fi.jokajoka.spaceshooter.logiikka.Projectile;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -27,12 +28,11 @@ public class Enemy extends Unit {
      * @param health Terveys alussa.
      * @param posX X-koordinaatti alussa.
      * @param posY Y-koordinaatti alussa.
-     * @param damage Vahingon määrä.
+     * @param damage Vahingon mÃ¤Ã¤rÃ¤.
      */
     public Enemy(int health, int posX, int posY, double damage) {
         super(health, posX, posY);
         this.setDamage(damage);
-        this.setPlayable(false);
     }
 
     /**
@@ -47,7 +47,6 @@ public class Enemy extends Unit {
     public Enemy(int health, int posX, int posY, double damage, Game instance) {
         super(health, posX, posY);
         this.setDamage(damage);
-        this.setPlayable(false);
         SS ss = new SS(instance.getSheet());
         image = ss.crop(2, 1, 60, 60);
         this.setSpeedY(1);
@@ -64,10 +63,10 @@ public class Enemy extends Unit {
     }
 
     public void checkCollision(Player player) {
-        if ((player.getPosY() - this.getPosY() < 60)
-                && (player.getPosY() - this.getPosY() > 0)
-                && (player.getPosX() - this.getPosX() > -60)
-                && ((player.getPosX()) - this.getPosX() < 60)
+        if ((player.getPosY() - this.getPosY() <= 60)
+                && (player.getPosY() - this.getPosY() >= 0)
+                && (player.getPosX() - this.getPosX() >= -60)
+                && ((player.getPosX()) - this.getPosX() <= 60)
                 && this.getAlive() == true) {
             player.reduce(50);
             this.kill();
@@ -79,32 +78,39 @@ public class Enemy extends Unit {
     }
 
     /**
-     * Tällä metodilla päivitetään Enemy olion tila.
+     * TÃ¤llÃ¤ metodilla pÃ¤ivitetÃ¤Ã¤n Enemy olion tila.
      */
     public void update() {
-        int ran = random.nextInt(2);
-        if (random.nextInt(10) == 0) {
-            if (ran == 0) {
-                this.setSpeedX(1);
-            } else if (ran == 1) {
-                this.setSpeedX(-1);
-            } else if (ran == 2) {
-                this.setSpeedX(0);
+        if (this.getAlive() == true) {
+            int ran = random.nextInt(2);
+            if (random.nextInt(10) == 0) {
+                if (ran == 0) {
+                    this.setSpeedX(1);
+                } else if (ran == 1) {
+                    this.setSpeedX(-1);
+                } else if (ran == 2) {
+                    this.setSpeedX(0);
+                }
             }
-        }
-        if (getSpeedY() == 1) {
-            setSpeedY(0);
-        } else {
-            setSpeedY(1);
-        }
+            if (getSpeedY() == 1) {
+                setSpeedY(0);
+            } else {
+                setSpeedY(1);
+            }
 
-        this.setPosY();
-        this.setPosX();
+            this.setPosY();
+            this.setPosX();
+
+            for (Projectile projectile : this.instance.getPlayer().getAmmo()) {
+                projectile.checkCollision(this);
+            }
+            this.checkCollision(this.instance.getPlayer());
+        }
 
     }
 
     /**
-     * Tällä metodilla piirretään Enemy-olioon asetettu kuva sen X- ja
+     * TÃ¤llÃ¤ metodilla piirretÃ¤Ã¤n Enemy-olioon asetettu kuva sen X- ja
      * Y-koordinaatteihin.
      *
      * @param g piirto-olio

@@ -161,33 +161,11 @@ public class Game extends Canvas implements Runnable {
      * Tarkoituksena on pÃ¤ivittÃ¤Ã¤ objektien tila.
      */
     public void update() {
-        ArrayList<Enemy> newEnemies = new ArrayList<>();
-        ArrayList<Projectile> newProjectiles = new ArrayList<>();
-        
+
         bg.update();
         player.update();
         this.formation.update();
-        
-        for (Enemy enemy: this.formation.getFormation()) {
-            if (enemy.getAlive() == true){
-                newEnemies.add(enemy);
-            }
-        }        
-        this.formation.setNew(newEnemies);
-        
-        for (Projectile projectile: this.player.getAmmo()) {
-            if (projectile.getUsable() == true){
-                newProjectiles.add(projectile);
-            }
-        }
-        this.player.setAmmo(newProjectiles);
-        
-        for (Enemy enemy : this.formation.getFormation()) {
-            for (Projectile projectile : this.player.getAmmo()) {
-                projectile.checkCollision(enemy);
-            }
-            enemy.checkCollision(this.player);
-        }
+
         if (player.getAlive() == false || this.victory == true) {
             repaint();
             stop();
@@ -195,7 +173,6 @@ public class Game extends Canvas implements Runnable {
         if (player.killed() == 15) {
             this.victory = true;
         }
-
     }
 
     @Override
@@ -209,19 +186,16 @@ public class Game extends Canvas implements Runnable {
 
         g.drawImage(image, 0, 0, 800, 800, this);
         bg.paint(g);
-        
-
         for (Enemy enemy : this.formation.getFormation()) {
             if (enemy.getAlive() == true) {
                 enemy.paint(g);
             }
         }
         for (Projectile projectile : this.player.getAmmo()) {
-            if (projectile.getPosY() >= -80 && projectile.getUsable() == true) {
+            if (projectile.getPosY() >= -60 && (projectile.getUsable() == true || projectile.getBlowTimer() > 0)) {
                 projectile.paint(g);
             }
         }
-        
         player.paint(g);
 
         g.clearRect(20, 700, 100, 80);

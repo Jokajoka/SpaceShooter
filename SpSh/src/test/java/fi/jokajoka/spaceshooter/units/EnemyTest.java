@@ -38,12 +38,6 @@ public class EnemyTest {
     @After
     public void tearDown() {
     }
-   
-    @Test
-    public void playability() {
-        Enemy enemy = new Enemy(100, 200, -100, 1.0);
-        assertEquals(false, enemy.getPlayable());
-    }
     
     @Test
     public void takeDamage() {

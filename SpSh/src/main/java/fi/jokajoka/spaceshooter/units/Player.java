@@ -7,7 +7,6 @@ package fi.jokajoka.spaceshooter.units;
 
 import fi.jokajoka.spaceshooter.gui.Game;
 import fi.jokajoka.spaceshooter.gui.SS;
-import fi.jokajoka.spaceshooter.logiikka.Buff;
 import fi.jokajoka.spaceshooter.logiikka.Movement;
 import fi.jokajoka.spaceshooter.logiikka.Projectile;
 import java.awt.Graphics;
@@ -25,7 +24,6 @@ public class Player extends Unit {
     private int chargeShoot;
     private Game instance;
     private ArrayList<Projectile> ammo = new ArrayList<>();
-    private ArrayList<Projectile> removeAmmo = new ArrayList<>();
     private int killed = 0;
 
     /**
@@ -42,7 +40,6 @@ public class Player extends Unit {
         //asettaa pelaajan tekemän vahingon määrän.
         this.setDamage(1.5);
         //asettaa pelaaja olion pelattavaan tilaan.
-        this.setPlayable(true);
         //asettaa pelaajan "henkiin".
         this.alive = true;
 
@@ -63,7 +60,6 @@ public class Player extends Unit {
         //asettaa pelaajan tekemän vahingon määrän.
         this.setDamage(5.0);
         //asettaa pelaaja olion pelattavaan tilaan.
-        this.setPlayable(true);
         //asettaa pelaajan "henkiin".
         this.alive = true;
         this.instance = instance;
@@ -78,24 +74,16 @@ public class Player extends Unit {
         return this.alive;
     }
 
-    /**
-     * Metodi, joka suoritetaan, kun pelaaja kerää kentältä buff olion.
-     * Tarkoituksena muuttaa pelaajan oliomuuttujien arvoa.
-     *
-     * @param buff Buff olio, joita on useita tyyppejä.
-     */
-    public void getBuff(Buff buff) {
-        if (buff.getType().equals("a")) {
-            this.setDamage(this.getDamage() * 2);
-        }
-    }
-
     public ArrayList<Projectile> getAmmo() {
         return this.ammo;
     }
-    
-    public void setAmmo(ArrayList<Projectile> newAmmo){
+
+    public void setAmmo(ArrayList<Projectile> newAmmo) {
         this.ammo = newAmmo;
+    }
+
+    public Game getGame() {
+        return this.instance;
     }
 
     public void shoot() {
@@ -117,6 +105,10 @@ public class Player extends Unit {
         this.alive = false;
     }
 
+    public void setImage(BufferedImage image) {
+        this.player = image;
+    }
+
     /**
      * Metodi, joka suoritetaan jokaisessa game-loopin vaiheessa. Tarkoituksena
      * päivittää pelaajan sijainti.
@@ -131,10 +123,9 @@ public class Player extends Unit {
         this.setPosY();
 
         //ampumistiheyden rajoitus
-        if(this.getFire() == true){
+        if (this.getFire() == true) {
             shoot();
         }
-        
 
         if (this.chargeShoot < 30) {
             this.chargeShoot++;
