@@ -30,7 +30,7 @@ Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään t
 * Törmätessä vastustaja-alukseen terveydestäsi vähennetään 50 ja vastustaja tuhoutuu.
 * Vastustaja-aluksen tuhoamiseen vaadittava ohjusten määrä vaihtelee.
 
-###### Luokkakuvaus
+###### Rakennekuvaus
 
 * Game-luokka toteuttaa ohjelman main metodin. Se vastaa Player, BackGroung sekä Formation olioiden luonnista pelin käynnistyessä.
 Run-metodi luo pelin sykkeen tavoitteena 60Hz taajuus ja jokaisella sykkeellä se ajaa update, sekä repaint metodit.
