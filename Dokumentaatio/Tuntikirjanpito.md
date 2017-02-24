@@ -13,3 +13,5 @@ Päivä | Tunnit | Kuvaus
 03.02.2017 | 8h | Yritystä saada TMC beans toimimaan kotikoneella.
 10.02.2017 | 6h | Ohjelmointia ja testailua. maven ja checkstyle päivitystä.
 17.02.2017 | 8h | Ohjelmointia, javadocin päivittelyä ja sekvenssikaavioiden aloitus.
+21.02.2017 | 6h | Toiminnallisuuden lisäys demotilaisuutta varten.
+21.02.2017 | 7h | Koodausta, luokkakaavuion ja dokumentaation päivitystä, jar-file:n luontia.
