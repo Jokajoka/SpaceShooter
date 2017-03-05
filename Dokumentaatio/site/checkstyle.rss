@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 9,
-             Errors: 18,
+      <title>File: 10,
+             Errors: 17,
              Warnings: 0,
              Infos: 0
       </title>
@@ -60,6 +60,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Projectile.java">fi/jokajoka/spaceshooter/logiikka/Projectile.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.units.Unit.java">fi/jokajoka/spaceshooter/units/Unit.java</a>
                 </td>
                 <td>
@@ -69,26 +83,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.gui.Game.java">fi/jokajoka/spaceshooter/gui/Game.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Buff.java">fi/jokajoka/spaceshooter/logiikka/Buff.java</a>
                 </td>
                 <td>
                   0
@@ -111,12 +111,26 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.units.Enemy.java">fi/jokajoka/spaceshooter/units/Enemy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.jokajoka.spaceshooter.logiikka.Formation.java">fi/jokajoka/spaceshooter/logiikka/Formation.java</a>
                 </td>
                 <td>
                   0
@@ -139,7 +153,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -153,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  3
                 </td>
               </tr>
                           <tr>
@@ -167,7 +181,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                       </tbody>

@@ -8,6 +8,7 @@ package fi.jokajoka.spaceshooter.gui;
 import java.awt.image.BufferedImage;
 
 /**
+ * Kuvien noutoon käytettävä luokka.
  * @author Jonde
  */
 public class SS {

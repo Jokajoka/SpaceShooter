@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
+ * Luo pelin vihollis-oliot.
+ *
  * @author kahonjon
  */
 public class Enemy extends Unit {
@@ -21,6 +23,7 @@ public class Enemy extends Unit {
     private Random random = new Random();
     private boolean alive;
     private Game instance;
+    private int killTimer;
 
     /**
      * Metodilla luodaan uusi Enemy-olio.
@@ -52,16 +55,40 @@ public class Enemy extends Unit {
         this.setSpeedY(1);
         this.alive = true;
         this.instance = instance;
+        this.killTimer = 5;
     }
 
+    /**
+     * Tapa olio.
+     */
     public void kill() {
         this.alive = false;
     }
 
+    /**
+     * Getteri onko hengissä.
+     *
+     * @return boolean alive
+     */
     public boolean getAlive() {
         return this.alive;
     }
 
+    /**
+     * Getteri killtimerille.
+     *
+     * @return Integer killTimer
+     */
+    public int getKillTimer() {
+        return this.killTimer;
+    }
+
+    /**
+     * Tämä metodi tarkkailee, törmääkö jokin vihollis aluksista pelaajaan ja
+     * muokkaa näiden tilaa sen mukaan.
+     *
+     * @param player
+     */
     public void checkCollision(Player player) {
         if ((player.getPosY() - this.getPosY() <= 60)
                 && (player.getPosY() - this.getPosY() >= 0)
@@ -105,6 +132,11 @@ public class Enemy extends Unit {
                 projectile.checkCollision(this);
             }
             this.checkCollision(this.instance.getPlayer());
+        } else {
+            if (this.killTimer == 5) {
+                this.image = new SS(this.instance.getSheet()).crop(2, 2, 60, 60);
+            }
+            this.killTimer--;
         }
 
     }
@@ -116,6 +148,9 @@ public class Enemy extends Unit {
      * @param g piirto-olio
      */
     public void paint(Graphics g) {
-        g.drawImage(image, this.getPosX(), this.getPosY(), null);
+        if (this.getAlive() == true || this.getKillTimer() > 0) {
+            g.drawImage(image, this.getPosX(), this.getPosY(), null);
+        }
+
     }
 }

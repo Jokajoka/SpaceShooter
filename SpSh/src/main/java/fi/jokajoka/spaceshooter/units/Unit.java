@@ -6,6 +6,8 @@
 package fi.jokajoka.spaceshooter.units;
 
 /**
+ * Toimii superluokkana sekä Player,- että Enemy-olioille.
+ *
  * @author kahonjon
  */
 public class Unit {
@@ -40,7 +42,7 @@ public class Unit {
      * Metodi parantaa kyseisen olion terveyden määrää annetun määrän
      * ylittämättä arvoa 100.
      *
-     * @param amount määrä
+     * @param amount
      */
     public void heal(int amount) {
         if (this.health + amount < 100) {
@@ -54,7 +56,7 @@ public class Unit {
      * Metodi vähentää kyseisen olion terveyden määrää annetun määrän
      * alittamatta arvoa 0.
      *
-     * @param amount määrä
+     * @param amount
      */
     public void reduce(int amount) {
         if (this.health > amount) {
@@ -64,42 +66,90 @@ public class Unit {
         }
     }
 
+    /**
+     * Getteri terveydelle.
+     *
+     * @return Integer health
+     */
     public int getHealth() {
         return this.health;
     }
 
+    /**
+     * Getteri vahingolle.
+     *
+     * @return double damage
+     */
     public double getDamage() {
         return this.damage;
     }
 
+    /**
+     * Setteri vahingolle.
+     *
+     * @param damage
+     */
     public void setDamage(double damage) {
         this.damage = damage;
     }
 
+    /**
+     * Getteri x-koordinaatille.
+     *
+     * @return Integer posX
+     */
     public int getPosX() {
         return this.posX;
     }
 
+    /**
+     * Getteri y-koordinaatille.
+     *
+     * @return Integer posY
+     */
     public int getPosY() {
         return this.posY;
     }
 
+    /**
+     * Setteri x-suuntaiselle nopeudelle.
+     *
+     * @param speed
+     */
     public void setSpeedX(int speed) {
         this.speedX = speed;
     }
 
+    /**
+     * Setteri y-suuntaiselle nopeudelle.
+     *
+     * @param speed
+     */
     public void setSpeedY(int speed) {
         this.speedY = speed;
     }
 
+    /**
+     * Getteri x-suuntaiselle nopeudelle.
+     *
+     * @return Integer speedX
+     */
     public int getSpeedX() {
         return this.speedX;
     }
 
+    /**
+     * Getteri y-suuntaiselle nopeudelle.
+     *
+     * @return Integer speedY
+     */
     public int getSpeedY() {
         return this.speedY;
     }
 
+    /**
+     * Setteri x-koordinaatille.
+     */
     public void setPosX() {
 
         if (this.speedX > 0) {
@@ -130,6 +180,9 @@ public class Unit {
         }
     }
 
+    /**
+     * Setteri y-koordinaatille.
+     */
     public void setPosY() {
 
         if (this.speedY > 0) {
@@ -160,10 +213,20 @@ public class Unit {
         }
     }
 
+    /**
+     * Setteri tulitukselle.
+     *
+     * @param value
+     */
     public void setFire(boolean value) {
         this.fire = value;
     }
 
+    /**
+     * Getteri tulitukselle.
+     *
+     * @return boolean fire
+     */
     public boolean getFire() {
         return this.fire;
     }

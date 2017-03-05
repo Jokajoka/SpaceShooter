@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 /**
+ * Vastaa pelin näppäineten kuuntelusta.
+ *
  * @author kahonjon
  */
 public class Movement implements KeyListener {
@@ -26,6 +28,11 @@ public class Movement implements KeyListener {
         this.player = x;
     }
 
+    /**
+     * Tämä metodi vastaa näppäinten painalluksesta.
+     *
+     * @param a
+     */
     @Override
     public void keyPressed(KeyEvent a) {
 
@@ -56,6 +63,11 @@ public class Movement implements KeyListener {
 
     }
 
+    /**
+     * Tämä metodi vastaa näppäimen vapautuksesta.
+     *
+     * @param a
+     */
     @Override
     public void keyReleased(KeyEvent a) {
 
@@ -86,6 +98,11 @@ public class Movement implements KeyListener {
 
     }
 
+    /**
+     * Tällä metodilla ei ole ohjelmassa käyttöä.
+     *
+     * @param a
+     */
     @Override
     public void keyTyped(KeyEvent a) {
     }

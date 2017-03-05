@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.jokajoka.spaceshooter.gui;
 
 import fi.jokajoka.spaceshooter.logiikka.BackGround;
@@ -21,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
+ * Itse pelin toteuttava luokka.
  * @author kahonjon
  */
 public class Game extends Canvas implements Runnable {
@@ -32,7 +28,6 @@ public class Game extends Canvas implements Runnable {
     private final String title = "SpaceShooter";
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private BufferedImage ss = null;
-
     private Player player;
     private BackGround bg;
     private ArrayList<Enemy> enemies = new ArrayList<>();
@@ -49,20 +44,20 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
 
         Game instance = new Game();
-
         Dimension d = new Dimension(width * 2, height * 2);
         instance.setPreferredSize(d);
-
         JFrame frame = new JFrame(instance.title);
         frame.add(instance);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-
         instance.start();
 
     }
 
+    /**
+     * Itse pelin ajonaikaiset tapahtumat. Pelin syke.
+     */
     @Override
     public void run() {
         init();
@@ -73,7 +68,6 @@ public class Game extends Canvas implements Runnable {
         int updates = 0;
         int frames = 0;
         long timer = System.currentTimeMillis();
-
         while (running) {
             long now = System.nanoTime();
             delta += (now - previousT) / nanoseconds;
@@ -84,18 +78,11 @@ public class Game extends Canvas implements Runnable {
                 updates++;
                 delta--;
             }
-
             repaint();
-
             frames++;
-
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 System.out.println(updates + " Ticks, Fps " + frames);
-                // LisÃ¤Ã¤ toimintaa
-                System.out.println(this.formation.getFormation());
-                System.out.println(this.player.getAmmo());
-
                 updates = 0;
                 frames = 0;
             }
@@ -152,7 +139,6 @@ public class Game extends Canvas implements Runnable {
         bg = new BackGround(0, -800);
         this.formation = new Formation(this);
         formation.set();
-
         addKeyListener(new Movement(this.player));
     }
 
@@ -165,7 +151,6 @@ public class Game extends Canvas implements Runnable {
         bg.update();
         player.update();
         this.formation.update();
-
         if (player.getAlive() == false || this.victory == true) {
             repaint();
             stop();
@@ -175,21 +160,22 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Piirtämiseen käytetty metodi. Osan piirtää itse ja osassa kutsuu toisen
+     * olion piirtometodia.
+     */
     @Override
     public void repaint() {
+
         BufferStrategy buffer = this.getBufferStrategy();
         if (buffer == null) {
             createBufferStrategy(2);
             return;
         }
         Graphics g = buffer.getDrawGraphics();
-
-        g.drawImage(image, 0, 0, 800, 800, this);
         bg.paint(g);
         for (Enemy enemy : this.formation.getFormation()) {
-            if (enemy.getAlive() == true) {
-                enemy.paint(g);
-            }
+            enemy.paint(g);
         }
         for (Projectile projectile : this.player.getAmmo()) {
             if (projectile.getPosY() >= -60 && (projectile.getUsable() == true || projectile.getBlowTimer() > 0)) {
@@ -197,7 +183,6 @@ public class Game extends Canvas implements Runnable {
             }
         }
         player.paint(g);
-
         g.clearRect(20, 700, 100, 80);
         g.drawString("Health: " + this.player.getHealth(), 40, 720);
         g.drawString("Killed: " + this.player.killed(), 40, 760);
@@ -217,7 +202,6 @@ public class Game extends Canvas implements Runnable {
                 System.out.println("Couldn't load image");
             }
         }
-
         g.dispose();
         buffer.show();
     }
@@ -232,8 +216,12 @@ public class Game extends Canvas implements Runnable {
         return ss;
     }
 
+    /**
+     * Palauttaa peliin tallennetun Player olion.
+     *
+     * @return Player player
+     */
     public Player getPlayer() {
         return this.player;
     }
-
 }

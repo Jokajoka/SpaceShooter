@@ -36,16 +36,12 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>fi.jokajoka.spaceshooter.logiikka.Buff</param>
-                        <param>fi.jokajoka.spaceshooter.logiikka.BackGround</param>
-                        <param>fi.jokajoka.spaceshooter.units.Player</param>
-                        <param>fi.jokajoka.spaceshooter.units.Enemy</param>
+                        <param>fi.jokajoka.spaceshooter.logiikka.*</param>
+                        <param>fi.jokajoka.spaceshooter.units.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>fi.jokajoka.spaceshooter.logiikka.Buff</param>
-                        <param>fi.jokajoka.spaceshooter.logiikka.BackGround</param>
-                        <param>fi.jokajoka.spaceshooter.units.Player</param>
-                        <param>fi.jokajoka.spaceshooter.units.Enemy</param>
+                        <param>fi.jokajoka.spaceshooter.logiikka.*</param>
+                        <param>fi.jokajoka.spaceshooter.units.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

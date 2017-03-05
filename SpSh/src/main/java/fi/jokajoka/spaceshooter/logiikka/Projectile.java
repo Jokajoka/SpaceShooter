@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Tämä luokka toteuttaa pelaajan ampumat ammukset.
  *
  * @author Jonde
  */
@@ -30,6 +31,12 @@ public class Projectile {
     private Player player;
     private Random random;
 
+    /**
+     * Konsturktori Pelaaja-olion luontiin.
+     *
+     * @param instance
+     * @param player
+     */
     public Projectile(Game instance, Player player) {
         this.instance = instance;
         SS ss = new SS(this.instance.getSheet());
@@ -40,6 +47,12 @@ public class Projectile {
         this.random = new Random();
     }
 
+    /**
+     * Tarkistaa, mikäli kyseinen olio osuu johonkin Enemy-olioon ja muuttaa
+     * tämän tilaa tarvittaessa.
+     *
+     * @param enemy
+     */
     public void checkCollision(Enemy enemy) {
         if (((enemy.getPosY() + 60) - this.getPosY() >= 0)
                 && ((enemy.getPosY() + 60) - this.getPosY() <= 60)
@@ -48,9 +61,9 @@ public class Projectile {
                 && enemy.getAlive() == true
                 && this.usable == true) {
             enemy.reduce((int) this.instance.getPlayer().getDamage());
-            
+
             randomPicture();
-            
+
             this.blowTimer = 3;
             if (enemy.getHealth() == 0) {
                 enemy.kill();
@@ -59,23 +72,40 @@ public class Projectile {
             this.usable = false;
         }
     }
-    
-    public void randomPicture(){
-        if(this.random.nextInt(1) == 1){
-                this.projectile = new SS(this.instance.getSheet()).crop(4, 1, 60, 60);
-            } else {
-                this.projectile = new SS(this.instance.getSheet()).crop(4, 2, 60, 60);
-            }
+
+    /**
+     * Tämä metodi muuttaa ammuksen kuvakkeen räjähdykseksi osuman sattuessa.
+     */
+    public void randomPicture() {
+        if (this.random.nextInt(1) == 1) {
+            this.projectile = new SS(this.instance.getSheet()).crop(4, 1, 60, 60);
+        } else {
+            this.projectile = new SS(this.instance.getSheet()).crop(4, 2, 60, 60);
+        }
     }
 
+    /**
+     * Tällä metodilla tarkisetaan, onko ammus vielä käyttettävissä pelin
+     * sisäisissä toiminnoissa.
+     *
+     * @return boolean usable
+     */
     public boolean getUsable() {
         return this.usable;
     }
 
+    /**
+     * Tällä metodilla tarkkaillaan ammuksen osumahetkestä kulunutta aikaa.
+     *
+     * @return Integer aika
+     */
     public int getBlowTimer() {
         return this.blowTimer;
     }
 
+    /**
+     * Tätä metodia käytetään ammusen päivittämiseen.
+     */
     public void update() {
         ArrayList<Projectile> newProjectiles = new ArrayList<>();
 
@@ -99,14 +129,29 @@ public class Projectile {
 
     }
 
+    /**
+     * Tätä metodia käytetään ammusten piirtämiseen.
+     *
+     * @param g
+     */
     public void paint(Graphics g) {
         g.drawImage(this.projectile, this.posX, this.posY, null);
     }
 
+    /**
+     * Tällä metodilla päästään käsiksi ammuksen y-koordinaattiin.
+     *
+     * @return Integer posY
+     */
     public int getPosY() {
         return this.posY;
     }
 
+    /**
+     * Tällä metodilla päästään käsiksi ammuksen x-koordinaattiin.
+     *
+     * @return Integer posX
+     */
     public int getPosX() {
         return this.posX;
     }

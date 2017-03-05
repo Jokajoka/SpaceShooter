@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
+ * Luo pelin taustakuva-olion.
  * @author kahonjon
  */
 public class BackGround {
@@ -37,10 +38,20 @@ public class BackGround {
 
     }
 
+    /**
+     * Palauttaa taustakuva-olion x-koordinaatin.
+     *
+     * @return Integer posX
+     */
     public int getPosX() {
         return this.posX;
     }
 
+    /**
+     * Palauttaa taustakuva-olion y-koordinaation.
+     *
+     * @return Integer posY
+     */
     public int getPosY() {
         return this.posY;
     }
@@ -55,6 +66,8 @@ public class BackGround {
     }
 
     /**
+     * Siirtää taustakuva-oliota ylöspäin.
+     *
      * @param y muutos
      */
     public void moveUp(int y) {
@@ -62,6 +75,8 @@ public class BackGround {
     }
 
     /**
+     * Vastaa olion piirrosta.
+     *
      * @param g piirto-olio
      */
     public void paint(Graphics g) {
