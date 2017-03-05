@@ -17,8 +17,8 @@ Pääideana pelissä on siis ohjata avaruudessa kiitävää alusta ja raivata et
 * Aluksen ohjaaminen
 * Ampuminen
 ![Alt text](https://yuml.me/92dda8da)
-![Alt text](/home/jonathan/varjorepo/Dokumentaatio/sekvenssikaavio1.png)
-![Alt text]((/home/jonathan/varjorepo/Dokumentaatio/sekvenssikaavio2.png)
+
+Sekvenssikaavioita löytyy Dokumentaatio kansiosta.
 
 ###### Ohjeet
 
