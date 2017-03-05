@@ -15,3 +15,6 @@ Päivä | Tunnit | Kuvaus
 17.02.2017 | 8h | Ohjelmointia, javadocin päivittelyä ja sekvenssikaavioiden aloitus.
 21.02.2017 | 6h | Toiminnallisuuden lisäys demotilaisuutta varten.
 21.02.2017 | 7h | Koodausta, luokkakaavuion ja dokumentaation päivitystä, jar-file:n luontia.
+24.02.2017 | 4h | Edistystä.
+03.03.2017 | 3h | Sekvenssikaavioiden opettelua ja luontia.
+05.03.2017 | 6h | Loppusäätöä.

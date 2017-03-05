@@ -7,7 +7,6 @@ muistuttava. Lähden toteuttamaan projektia hyvin simppelisti ja lisään siihen
 elementtejä taitotasoni, sekä tarjolla olevan ajan mukaan.
 
 Pääideana pelissä on siis ohjata avaruudessa kiitävää alusta ja raivata eteen tulleita vastustajia.
-Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään tason loppuun.
 
 ###### Käyttäjät:
 
@@ -17,9 +16,9 @@ Pelaaja kerää pisteitä sekä päivityksiä (boosteja) ja pyrkii etenemään t
 
 * Aluksen ohjaaminen
 * Ampuminen
-* Keräily
-* Boostien hyödyntäminen
 ![Alt text](https://yuml.me/92dda8da)
+![Alt text](/home/jonathan/varjorepo/Dokumentaatio/sekvenssikaavio1.png)
+![Alt text]((/home/jonathan/varjorepo/Dokumentaatio/sekvenssikaavio2.png)
 
 ###### Ohjeet
 
